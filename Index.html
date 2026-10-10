@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rat Lab Combos</title>
+<style>
+  body {
+    background: #0f0f14;
+    color: #f0f0f5;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .box {
+    max-width: 640px;
+    width: 100%;
+    background: #1a1a24;
+    border: 2px solid #ff5a82;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 0 30px rgba(255,90,130,0.3);
+  }
+  h1 {
+    color: #ff5a82;
+    font-size: 22px;
+    margin: 0 0 6px;
+    letter-spacing: 1px;
+  }
+  .sub {
+    color: #78dcff;
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .label {
+    color: #78788c;
+    font-size: 12px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .code {
+    background: #0a0a10;
+    color: #78dcff;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #2a2a38;
+    font-size: 13px;
+    word-break: break-all;
+    line-height: 1.5;
+    user-select: all;
+  }
+  button {
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    background: #ff5a82;
+    color: #0f0f14;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  button:active {
+    background: #ff3a68;
+  }
+  .steps {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a38;
+    font-size: 13px;
+    color: #b0b0c0;
+    line-height: 1.7;
+  }
+  .steps b { color: #ff5a82; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>🧬🧀🍩 RAT LAB COMBOS</h1>
+  <div class="sub">Thanks for completing the tasks!</div>
+
+  <div class="label">Copy this line</div>
+  <div class="code" id="code">loadstring(game:HttpGet("https://pastebin.com/raw/7Jh7Pza1"))()</div>
+  <button onclick="copyIt()">📋 COPY</button>
+
+  <div class="steps">
+    <b>1.</b> Tap COPY above<br>
+    <b>2.</b> Open your executor (Delta, etc.)<br>
+    <b>3.</b> Paste the line<br>
+    <b>4.</b> Execute — GUI opens
+  </div>
+</div>
+
+<script>
+function copyIt() {
+  const text = document.getElementById('code').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('button');
+    btn.innerText = '✅ COPIED';
+    setTimeout(() => btn.innerText = '📋 COPY', 1500);
+  }).catch(() => {
+    // fallback
+    const r = document.createRange();
+    r.selectNode(document.getElementById('code'));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    const btn = document.querySelector('button');
+    btn.innerText = '✅ COPIED';
+    setTimeout(() => btn.innerText = '📋 COPY', 1500);
+  });
+}
+</script>
+</body>
+</html>
